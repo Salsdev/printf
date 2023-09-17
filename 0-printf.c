@@ -1,7 +1,4 @@
 #include "main.h"
-#include <stdarg.h>
-#include <string.h>
-#include <unistd.h>
 /**
 * _printf - produces output according to a format.
 * @format: the character string
@@ -13,6 +10,7 @@ int _printf(const char *format, ...)
 	va_list list_of_args;
 	char *str;
 	char c;
+	int str_len;
 
 	if (format == NULL)
 		return (-1);
@@ -26,7 +24,12 @@ int _printf(const char *format, ...)
 		}
 		else if (*(++format) == '\0')
 			break;
-		if (*format == 'c')
+		if (*format == '%')
+		{
+			write(1, format, 1);
+			print_c++;
+		}
+		else if (*format == 'c')
 		{
 			c = va_arg(list_of_args, int);
 			write(1, &c, 1);
@@ -35,20 +38,13 @@ int _printf(const char *format, ...)
 		else if (*format == 's')
 		{
 			str = va_arg(list_of_args, char*);
-			if (str != NULL)
+			str_len = 0;
+			while (str[str_len] != '\0')
 			{
-				while (*str)
-				{
-					write(1, str, 1);
-					str++;
-					print_c++;
-				}
+				str_len++;
+				write(1, str, str_len);
+				print_c += str_len;
 			}
-		}
-		else if (*format == '%')
-		{
-			write(1, "%", 1);
-			print_c++;
 		}
 		format++;
 	}
