@@ -4,6 +4,7 @@
 * @format: the character string
 * Return: 0
 */
+int _printf(const char *format, ...);
 int _printf(const char *format, ...)
 {
 	int print_c = 0;
