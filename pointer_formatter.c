@@ -14,12 +14,9 @@ int print_pointer(va_list types, char buffer[],
 {
 
 	char extra_c = 0, padd = ' ';
-<<<<<<< HEAD
 
-	/*fcd41cdfd8e6bc9167e47633f09c6024a629154b*/
-=======
->>>>>>> 7cf55966ba65e92a53fdef3cba52fd6629909e55
 	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1;
+
 	unsigned long num_addrs;
 	char map_to[] = "0123456789abcdef";
 	void *addrs = va_arg(types, void *);
