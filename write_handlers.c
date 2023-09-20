@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * handle_write_char - Prints a string
  * @c: char types.
@@ -8,7 +7,6 @@
  * @width: get width.
  * @precision: precision specifier
  * @size: Size specifier
- *
  * Return: Number of chars printed.
  */
 int handle_write_char(char c, char buffer[],
@@ -24,13 +22,11 @@ int handle_write_char(char c, char buffer[],
 		padd = '0';
 	buffer[i++] = c;
 	buffer[i] = '\0';
-
 	if (width > 1)
 	{
 		buffer[BUFF_SIZE - 1] = '\0';
 		for (i = 0; i < width - 1; i++)
 			buffer[BUFF_SIZE - i - 2] = padd;
-
 		if (flags & F_MINUS)
 			return (write(1, &buffer[0], 1) +
 					write(1, &buffer[BUFF_SIZE - i - 1], width - 1));
@@ -40,7 +36,6 @@ int handle_write_char(char c, char buffer[],
 	}
 	return (write(1, &buffer[0], 1));
 }
-
 /**
  * write_number - Prints a string
  * @is_negative: Lista of arguments
@@ -50,7 +45,6 @@ int handle_write_char(char c, char buffer[],
  * @width: get width.
  * @precision: precision specifier
  * @size: Size specifier
- *
  * Return: Number of chars printed.
  */
 int write_number(int is_negative, int ind, char buffer[],
@@ -69,7 +63,6 @@ int write_number(int is_negative, int ind, char buffer[],
 		extra_ch = '+';
 	else if (flags & F_SPACE)
 		extra_ch = ' ';
-
 	return (write_num(ind, buffer, flags, width, precision,
 				length, padd, extra_ch));
 }
@@ -84,7 +77,6 @@ int write_number(int is_negative, int ind, char buffer[],
  * @length: Number length
  * @padd: Pading char
  * @extra_c: Extra char
- *
  * Return: Number of printed chars.
  */
 int write_num(int ind, char buffer[],
@@ -124,7 +116,8 @@ int write_num(int ind, char buffer[],
 		{
 			if (extra_c)
 				buffer[--padd_start] = extra_c;
-			buffer[--padd_start] = extra_c; return (write(1, &buffer[padd_start], i - padd_start) +
+			buffer[--padd_start] = extra_c; return (write(1, &buffer[padd_start],
+									i - padd_start) +
 					write(1, &buffer[ind], length - (1 - padd_start)));
 		}
 	}
@@ -132,7 +125,6 @@ int write_num(int ind, char buffer[],
 		buffer[--ind] = extra_c;
 	return (write(1, &buffer[ind], length));
 }
-
 /**
  * write_unsgnd - Writes an unsigned number
  * @is_negative: Number indicating if the num is negative
@@ -142,7 +134,6 @@ int write_num(int ind, char buffer[],
  * @width: Width specifier
  * @precision: Precision specifier
  * @size: Size specifier
- *
  * Return: Number of written chars.
  */
 int write_unsgnd(int is_negative, int ind,
@@ -157,7 +148,6 @@ int write_unsgnd(int is_negative, int ind,
 
 	if (precision == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0')
 		return (0);
-
 	if (precision > 0 && precision < length)
 		padd = ' ';
 	while (precision > length)
@@ -171,9 +161,7 @@ int write_unsgnd(int is_negative, int ind,
 	{
 		for (i = 0; i < width - length; i++)
 			buffer[i] = padd;
-
 		buffer[i] = '\0';
-
 		if (flags & F_MINUS)
 		{
 			return (write(1, &buffer[ind], length) + write(1, &buffer[0], i));
@@ -185,7 +173,6 @@ int write_unsgnd(int is_negative, int ind,
 	}
 	return (write(1, &buffer[ind], length));
 }
-
 /**
  * write_pointer - Write a memory address
  * @buffer: Arrays of chars
@@ -196,7 +183,6 @@ int write_unsgnd(int is_negative, int ind,
  * @padd: Char representing the padding
  * @extra_c: Char representing extra char
  * @padd_start: Index at which padding should start
- *
  * Return: Number of written chars.
  */
 int write_pointer(char buffer[], int ind, int length,

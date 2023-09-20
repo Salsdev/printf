@@ -1,1 +1,1 @@
-C - printf
+Printf Project by Emmanuel Odagba and Saleh Aliyu.
