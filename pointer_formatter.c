@@ -12,7 +12,10 @@
 int print_pointer(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
-	char extra_c = 0, padd = '0';
+<<<<<<< HEAD
+=======
+	char extra_c = 0, padd = ' ';
+>>>>>>> fcd41cdfd8e6bc9167e47633f09c6024a629154b
 	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1;
 	unsigned long num_addrs;
 	char map_to[] = "0123456789abcdef";

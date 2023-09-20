@@ -18,20 +18,20 @@
 
 
 /**
- * struct specifier_handler - Struct for format specifiers and their handlers.
+ * struct fmt - Struct for format specifiers and their handlers.
  *
- * @specifier: The format specifier.
- * @handler_fn: The function associated with the specifier.
+ * @fmt: The format specifier.
+ * @fn: The function associated with the specifier.
  */
-struct specifier_handler
+struct fmt
 {
-	char specifier;
-	int (*handler_fn)(va_list, char[], int, int, int, int);
+	char fmt;
+	int (*fn)(va_list, char[], int, int, int, int);
 };
-typedef struct specifier_handler specifier_handler_t;
+typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);
-int handle_print(const char *specifier_handler, int *i,
+int handle_print(const char *fmt, int *ind,
 		va_list list, char buffer[], int flags, int width, int precision, int size);
 
 /* Funtions to print chars and strings */
